@@ -99,5 +99,79 @@ int cycleLen(ListNode* head)
     return len;
 }
 ```
-
+### 反转单链表
+链表结点定义
+```C++
+class ListNode{
+    int val;
+    ListNode *next;
+    ListNode(int x){
+        this->val = x;
+        this->next = NULL;
+    }
+}
+```
+#### 就地反转法
+把当前链表的下一个节点pCur插入到头结点dummy的下一个节点中，就地反转。
+dummy->1->2->3->4->5的就地反转过程：  
+dummy->2->1->3->4->5  
+dummy->3->2->1->4->5  
+dummy->4>-3->2->1->5  
+dummy->5->4->3->2->1  
+初始状态：  
+![初始状态图](./material/反转链表就地反转法初始状态图.png)
+过程：  
+pCur是需要反转的节点。  
+1、prev连接下一次需要反转的节点  
+2、反转节点pCur  
+3、纠正头结点dummy的指向  
+4、pCur指向下一次要反转的节点  
+图示如下：  
+![反转过程图](./material/反转链表就地反转法反转过程图.png)
+代码如下：  
+```C++
+ListNode *reverseList(ListNode *head){
+    if(head == NULL){
+        return head;
+    }
+    ListNode dummy = new ListNode(-1);
+    dummy.next = head;
+    ListNode *prev = dummy.next;
+    ListNode * pCur = prev.next;
+    while(pCur != NULL){
+        prev.next = pCur.next;
+        pCur.next = dummy.next;
+        dummy.next = pCur;
+        pCur = prev.next;
+    }
+    return dummy.next;
+}
+```   
+#### 头结点插入法
+新建一个头结点，遍历原链表，把每个节点用头结点插入到新建链表中。最后，新建的链表就是反转后的链表。  
+初始状态如图：  
+![初始状态图](./material/反转链表头结点插入法初始状态图.png)  
+过程：  
+pCur是要插入到新链表的节点。  
+pNex是临时保存的pCur的next。  
+1、pNex保存下一次要插入的节点  
+2、把pCur插入到dummy中  
+3、纠正头结点dummy的指向  
+4、pCur指向下一次要插入的节点  
+图示如下：  
+![过程图](./material/反转链表头结点插入法过程图.png)  
+代码如下：  
+```C++
+ListNode *reverseList(ListNode *head) {
+    ListNode dummy = new ListNode(-1);
+    ListNode pCur = head;
+    while(pCur != NULL){
+        ListNode *pNext = pCur.next;
+        pCur.next = dummy.next;
+        dummy.next = pCur;
+        pCur = pNext;
+    }
+    return dummy.next;
+}
+```
 ## 树
