@@ -119,7 +119,7 @@ dummy->3->2->1->4->5
 dummy->4>-3->2->1->5  
 dummy->5->4->3->2->1  
 初始状态：  
-![初始状态图](./material/反转链表就地反转法初始状态图.png)
+![初始状态图](./material/反转链表就地反转法初始状态图.png)  
 过程：  
 pCur是需要反转的节点。  
 1、prev连接下一次需要反转的节点  
@@ -127,7 +127,7 @@ pCur是需要反转的节点。
 3、纠正头结点dummy的指向  
 4、pCur指向下一次要反转的节点  
 图示如下：  
-![反转过程图](./material/反转链表就地反转法反转过程图.png)
+![反转过程图](./material/反转链表就地反转法反转过程图.png)  
 代码如下：  
 ```C++
 ListNode *reverseList(ListNode *head){
@@ -159,7 +159,7 @@ pNex是临时保存的pCur的next。
 3、纠正头结点dummy的指向  
 4、pCur指向下一次要插入的节点  
 图示如下：  
-![过程图](./material/反转链表头结点插入法过程图.png)  
+![过程图](./material/反转链表头结点插入法过程图.png)   
 代码如下：  
 ```C++
 ListNode *reverseList(ListNode *head) {
